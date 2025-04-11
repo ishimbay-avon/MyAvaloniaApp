@@ -1,0 +1,69 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyAvaloniaApp.App"
+             xmlns:local="using:MyAvaloniaApp"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+
+        <Style Selector="Button.menuButton">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  Content="{TemplateBinding Content}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="4"
+                                  Padding="{TemplateBinding Padding}"
+                                  TextBlock.Foreground="{TemplateBinding Foreground}"/>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#ECF0F1"/>
+        <Style.Animations>
+            <Animation Duration="0:0:0.2" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Background" Value="Transparent"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Background" Value="#34495E"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+    
+    <Style Selector="Button.menuItem">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  Content="{TemplateBinding Content}"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="4"
+                                  Padding="{TemplateBinding Padding}"
+                                  TextBlock.Foreground="{TemplateBinding Foreground}"/>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#ECF0F1"/>
+        <Style.Animations>
+            <Animation Duration="0:0:0.2" FillMode="Forward">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Background" Value="Transparent"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Background" Value="#34495E"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+    </Application.Styles>
+</Application>

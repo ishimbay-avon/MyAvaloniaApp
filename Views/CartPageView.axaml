@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyAvaloniaApp.Views.CartPageView"
+             xmlns:vm="using:MyAvaloniaApp.ViewModels"
+             xmlns:local="clr-namespace:MyAvaloniaApp.Converters"
+             x:DataType="vm:MainWindowViewModel">
+
+    <UserControl.Resources>
+        <local:BoolToStatusConverter x:Key="BoolToStatusConverter"/>
+         <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    </UserControl.Resources>
+
+
+<Grid RowDefinitions="Auto,Auto,*">
+<TextBlock Text="{Binding CartSummary}" Grid.Row="0" Margin="5"/>
+<Grid Grid.Row="1" Margin="5" ColumnDefinitions="40,200,100,*">
+            <TextBlock Text="#" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Наименование" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Кол-во" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Есть в наличии" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+<ListBox ItemsSource="{Binding CartItems}">
+    <ListBox.ItemTemplate>
+        <DataTemplate>
+            <Grid Margin="5" ColumnDefinitions="40,200,100,*" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Index}"/>
+                            <TextBlock Text="{Binding Product.Name}"
+                                       Grid.Column="1"
+                                       VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Quantity, Mode=TwoWay}"
+                                     Grid.Column="2"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"
+                                     Width="50"
+                                     IsReadOnly="True"
+                                     DoubleTapped="OnQuantityDoubleTapped"
+                                     LostFocus="OnQuantityLostFocus"
+                                     />
+
+                            <TextBlock Text="{Binding IsAvailable, Converter={StaticResource BoolToStatusConverter}}"
+                                       Foreground="{Binding IsAvailable, Converter={StaticResource BoolToColorConverter}}"
+                                       Grid.Column="3"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Margin="20,0,0,0"/>
+                        </Grid>
+        </DataTemplate>
+    </ListBox.ItemTemplate>
+</ListBox>
+</ScrollViewer>
+
+</Grid>
+</UserControl>

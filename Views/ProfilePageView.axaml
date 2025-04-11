@@ -1,0 +1,102 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MyAvaloniaApp.Views.ProfilePageView"
+             xmlns:vm="using:MyAvaloniaApp.ViewModels"
+             xmlns:local="clr-namespace:MyAvaloniaApp.Converters"
+             x:DataType="vm:MainWindowViewModel">
+
+    <UserControl.Resources>
+        <local:BoolToStatusConverter x:Key="InverseBoolConverter"/>
+    </UserControl.Resources>
+
+<StackPanel Margin="20" Spacing="10">
+    <TextBlock Text="Профиль пользователя" FontSize="18" FontWeight="Bold"/>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Spacing="5" HorizontalAlignment="Center">
+            <Image Source="{Binding UserProfile.Photo}" HorizontalAlignment="Center" Width="150" Height="150"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding UserProfile.FirstName}"/>
+                <TextBlock Text="{Binding UserProfile.LastName}" Margin="5,0,0,0"/>                                    
+            </StackPanel>           
+             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="{Binding UserProfile.Age}"/>
+                <TextBlock Text="лет" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Spacing="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Имя: " VerticalAlignment="Center" Width="100"/>
+              <TextBox Text="{Binding UserProfile.FirstName}"
+                             Watermark="Имя"
+                             Width="200"/> 
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фамилия: " VerticalAlignment="Center" Width="100"/>
+            <TextBox Text="{Binding UserProfile.LastName}" 
+                    Watermark="Фамилия"
+                    Width="200"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Отчество: " VerticalAlignment="Center" Width="100"/>
+            <TextBox Text="{Binding UserProfile.MiddleName}" 
+                    Watermark="Отчество"
+                    Width="200"
+                    />
+        </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Телефон: " VerticalAlignment="Center" Width="100"/>
+            <TextBox Text="{Binding UserProfile.Phone}" 
+                         Watermark="Телефон"
+                         Width="200">
+                    <TextBox.Styles>
+                        <Style Selector="TextBox:invalid">
+                            <Setter Property="BorderBrush" Value="Red"/>
+                        </Style>
+                    </TextBox.Styles>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="email: " VerticalAlignment="Center" Width="100"/>
+            <TextBox Text="{Binding UserProfile.Email}" 
+                    Watermark="Email"
+                    Width="200">
+                <TextBox.Styles>
+                    <Style Selector="TextBox:invalid">
+                        <Setter Property="BorderBrush" Value="Red"/>
+                    </Style>
+                </TextBox.Styles>
+            </TextBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Возраст: " VerticalAlignment="Center" Width="100"/>
+                    <TextBox Text="{Binding UserProfile.Age}"
+                             Watermark="Возраст"
+                             HorizontalAlignment="Stretch" Width="200"/>
+                    <TextBlock Text=" лет" VerticalAlignment="Center"/>
+            </StackPanel>
+
+           <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Баланс: " VerticalAlignment="Center" Width="100"/>
+                <TextBox Text="{Binding UserProfile.Balance}"
+                    Watermark="Баланс"                    
+                    HorizontalAlignment="Stretch" Width="200"/>
+                <TextBlock Text=" р." VerticalAlignment="Center" />
+            </StackPanel>                      
+            
+        </StackPanel>
+    </Grid>
+</StackPanel>
+
+</UserControl>
